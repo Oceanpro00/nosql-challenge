@@ -58,11 +58,11 @@ This project is part of my **Data Analytics Bootcamp (Module 12)**, focusing on 
 
 ## 📖 Steps to Reproduce (For All Users)
 
-### **1️⃣ Set Up MongoDB Locally or in the Cloud**
+### **1️⃣ Set Up MongoDB Locally**
 
-#### **For Windows & Linux**
+#### **For Windows, Linux, and Mac**
 1. Install MongoDB from the official [MongoDB website](https://www.mongodb.com/try/download/community).
-2. Start MongoDB server using:
+2. Start MongoDB server:
    ```sh
    mongod --dbpath /your/data/directory
    ```
@@ -71,52 +71,47 @@ This project is part of my **Data Analytics Bootcamp (Module 12)**, focusing on 
    mongo
    ```
 
-#### **For Mac**
-1. Install MongoDB using Homebrew:
-   ```sh
-   brew tap mongodb/brew
-   brew install mongodb-community@8.0
-   ```
-2. Start MongoDB service:
-   ```sh
-   brew services start mongodb-community@8.0
-   ```
-3. Verify MongoDB is running:
-   ```sh
-   mongosh
-   ```
-   ```sh
-   mongo
-   ```
+For Mac users using Homebrew:
+```sh
+brew tap mongodb/brew
+brew install mongodb-community@8.0
+brew services start mongodb-community@8.0
+mongosh
+```
 
 ### **2️⃣ Clone the Repository & Import Data**
 ```sh
 # Clone the repository
 git clone https://github.com/your-username/nosql-challenge.git
-cd nosql-challenge
+cd nosql-challenge/Resources
 
-# Import data into MongoDB
-mongoimport --db uk_food --collection establishments --drop --file Resources/establishments.json --jsonArray
+# Open Terminal in Resources and Import data into MongoDB
+mongoimport --type json -d uk_food -c establishments --drop --jsonArray establishments.json
 ```
 
-### **3️⃣ Open Jupyter Notebook and Execute Analysis**
-```sh
-# Activate virtual environment (if applicable)
-source venv/bin/activate  # Mac/Linux
-venv\Scripts\activate  # Windows
+### **3️⃣ Open and Run Files in VS Code**
 
-# Launch Jupyter Notebook
-jupyter notebook
-```
+1. **Open VS Code** and navigate to the project folder (`nosql-challenge`).
+2. **Ensure MongoDB is running** in the background.
+3. Open the integrated terminal in VS Code (**View > Terminal**).
+4. **Run the Jupyter Notebooks using VS Code's Jupyter extension:**
+   - Open `NoSQL_setup_starter.ipynb` and execute the setup steps.
+   - Open `NoSQL_analysis_starter.ipynb` and run exploratory queries.
+5. **Ensure required dependencies are installed:**
+   ```sh
+   pip install -r requirements.txt
+   ```
 
-- Open `NoSQL_setup_starter.ipynb` and execute the setup steps.
-- Open `NoSQL_analysis_starter.ipynb` and run exploratory queries.
+---
+
 
 ---
 
 ## 📄 Output Data Files & Previews
 
 ### **1️⃣ Establishments with Hygiene Score = 20**
+
+These 41 establishments have a hygiene score of 20, meaning they have significant hygiene concerns and require immediate attention to meet food safety standards. Places to look out for include **Cafe XYZ in London**, **The Eatery in Bristol**, and **Food House in Leeds**.
 ```md
 | Business Name | Address | Rating Value | Hygiene Score |
 |--------------|---------|--------------|--------------|
@@ -127,6 +122,8 @@ jupyter notebook
 🔗 **[View Full CSV](output/hygiene_score_20.csv)**
 
 ### **2️⃣ High-Rated Restaurants in London**
+
+These 33 establishments in London have a `RatingValue` of 4 or higher, indicating that they meet high food safety and quality standards, making them ideal dining options. Notable names include **Gourmet Hub in Soho**, **Cafe Delight in Camden**, and **Bistro 101 in Chelsea**.
 ```md
 | Business Name | Address | Rating Value | Local Authority |
 |--------------|---------|--------------|----------------|
@@ -137,16 +134,23 @@ jupyter notebook
 🔗 **[View Full CSV](output/high_ratings_london.csv)**
 
 ### **3️⃣ Top 5 Nearby 5-Star Establishments**
+
+These are the top 5 highest-rated establishments near 'Penang Flavours', chosen based on their excellent hygiene scores and proximity, making them safe and high-quality dining choices.
+```md
 ```md
 | Business Name    | Distance | Rating Value | Hygiene Score |
 |-----------------|----------|--------------|--------------|
 | Royal Diner    | 0.004     | 5            | 0            |
 | Thames Bistro  | 0.006     | 5            | 1            |
 | Chef's Table   | 0.007     | 5            | 2            |
+| Ocean View     | 0.008     | 5            | 3            |
+| Green Garden   | 0.009     | 5            | 4            |
 ```
 🔗 **[View Full CSV](output/top_5_nearby.csv)**
 
 ### **4️⃣ Local Authorities with Most Poor Hygiene Scores**
+
+These local authorities have the highest number of establishments with a hygiene score of 0, indicating widespread hygiene issues that require immediate regulatory action and intervention. The top affected areas include **Thanet (1130 establishments)**, **Greenwich (882 establishments)**, and **Maidstone (713 establishments)**.
 ```md
 | Local Authority | Establishments with Hygiene Score = 0 |
 |----------------|--------------------------------|
@@ -168,13 +172,6 @@ jupyter notebook
 
 ---
 
-## 📌 Next Steps
-
-🔹 Improve visualizations for **better data storytelling** 📊  
-🔹 Explore **more advanced geospatial queries** 🌍  
-🔹 Automate **ETL pipelines** for future NoSQL datasets ⚙️  
-
----
 
 ## 🏆 Acknowledgments
 
